@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alfred's Shack</title>
+</head>
+<body>
+    <h1>This is Alfred's project</h1>
+    <p>Click the button below to trigger the effect</p>
+    <p id = "counter">Counter: 1</p>
+    <button type = "button" onclick = "fade(document.body)">click me!</button>
+
+    <script>
+        //This example shows the concept of closure in JS
+        //The key takeaway is to understand that the inner function has 
+        //access to the actual variables of the outer functions and not the copies
+        function fade(node){
+            var level = 1;
+
+            //inner function assigned to variable step
+            var step = function(){
+                var hex = level.toString(16);       //and hex value representing the color
+                //change color every time this inner function invoked
+                node.style.backgroundColor = '#FFFF' + hex + hex;  
+                if(level < 15){
+                    level += 1;
+                    setTimeout(step, 500);
+                    document.getElementById("counter").innerHTML = level;
+                }
+            };
+            setTimeout(step(), 500);
+        }
+    </script>
+</body>
+</html>
